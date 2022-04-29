@@ -5,6 +5,7 @@ import Blogs from "./Blogs";
 import Dashboard from "./Dashboard";
 import Home from "./Home";
 import Login from "./Login";
+import Navbar from "./Navbar";
 import SignUp from "./SignUp";
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
 
     return (
         <>
-            <header>Header</header>
+            <header className="bg-slate-900">
+                <Navbar />
+            </header>
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
