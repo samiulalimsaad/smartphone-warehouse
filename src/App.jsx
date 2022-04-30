@@ -14,7 +14,7 @@ function App() {
 
     return (
         <>
-            <header className="bg-slate-900">
+            <header className="sticky top-0 z-50 bg-slate-900">
                 <Navbar />
             </header>
             <main>

@@ -6,8 +6,8 @@ const CustomLink = ({ to, children, ...props }) => {
         <NavLink
             to={to}
             className={({ isActive }) =>
-                `hover:text-yellow-500 duration-300 uppercase
-                ${isActive ? "text-yellow-300 font-semibold" : "text-slate-50"}`
+                `hover:text-teal-500 duration-300 uppercase
+                ${isActive ? "text-teal-300 font-semibold" : "text-slate-50"}`
             }
             {...props}
         >
