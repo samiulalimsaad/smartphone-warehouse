@@ -20,18 +20,24 @@ const Navbar = () => {
                     <>
                         <CustomLink to="/">Home</CustomLink>
                         <CustomLink to="/blogs">Blogs</CustomLink>
-                        <CustomLink to="/about">About</CustomLink>
                         {user && user?.emailVerified ? (
                             <>
+                                <CustomLink to="/manage-items">
+                                    Manage Items
+                                </CustomLink>
+                                <CustomLink to="/add-item">
+                                    Add Items
+                                </CustomLink>
+                                <CustomLink to="/my-item">My Items</CustomLink>
+                                <CustomLink to="/dashboard">
+                                    Dashboard
+                                </CustomLink>
                                 <button
                                     onClick={() => signOut(auth)}
                                     to="/logout"
                                 >
                                     logout
                                 </button>
-                                <CustomLink to="/dashboard">
-                                    Dashboard
-                                </CustomLink>
                             </>
                         ) : (
                             <>
