@@ -7,7 +7,7 @@ import CustomLink from "../utilities/CustomLink";
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
     return (
-        <div className="px-4 py-4 space-y-4 sm:space-y-0 sm:container sm:px-20 sm:flex sm:items-center sm:justify-between text-slate-50">
+        <div className="px-4 py-4 space-y-4 text-teal-500 sm:space-y-0 sm:container sm:px-20 sm:flex sm:items-center sm:justify-between">
             <CustomLink
                 to="/"
                 className="flex gap-2 font-mono text-3xl font-extrabold animate-pulse"

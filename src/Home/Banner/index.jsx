@@ -38,14 +38,17 @@ const Banner = () => {
                         className="object-contain object-center h-screen p-20 rounded-md w-96"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-slate-900/75 text-slate-50">
-                        <div>
+                        <div className="space-y-4 ">
                             <h1 className="text-5xl">{item.name}</h1>
                             <p className="text-3xl">
                                 ${item.price} ({item.quantity} pice available)
                             </p>
-                            <button className="px-4 py-2 mt-4 bg-teal-500 rounded-md text-slate-900 hover:bg-teal-600">
+                            <a
+                                href="#inventoryItems"
+                                className="inline-block px-4 py-2 bg-teal-500 rounded-md text-slate-900 hover:bg-teal-600"
+                            >
                                 Explore More
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
