@@ -5,8 +5,10 @@ import {
 } from "react-firebase-hooks/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase.init";
+import useTitle from "../utilities/useTitle";
 
 const Signup = () => {
+    useTitle("SignUp");
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth, {
             sendEmailVerification: true,

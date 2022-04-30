@@ -9,8 +9,11 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../Firebase.init";
+import useTitle from "../utilities/useTitle";
 
 const Login = () => {
+    useTitle("Login");
+
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =

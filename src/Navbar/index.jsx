@@ -12,8 +12,8 @@ const Navbar = () => {
                 to="/"
                 className="flex gap-2 font-mono text-3xl font-extrabold animate-pulse"
             >
-                <img src="/images/favicon.svg" className="h-8" alt="" /> John
-                Smith
+                <img src="/images/favicon.svg" className="h-8" alt="" />{" "}
+                Smartphone Warehouse
             </CustomLink>
             <div className="flex flex-col flex-wrap items-center justify-center sm:flex-row sm:space-x-8 sm:flex-nowrap">
                 {!loading && (
@@ -36,7 +36,7 @@ const Navbar = () => {
                                     onClick={() => signOut(auth)}
                                     to="/logout"
                                 >
-                                    logout
+                                    Logout
                                 </button>
                             </>
                         ) : (
