@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "./404";
 import Blogs from "./Blogs";
 import Dashboard from "./Dashboard";
+import Footer from "./Footer";
 import Home from "./Home";
 import Login from "./Login";
 import Navbar from "./Navbar";
@@ -26,7 +27,9 @@ function App() {
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
-            <footer>Footer</footer>
+            <footer className="bg-slate-900">
+                <Footer />
+            </footer>
         </>
     );
 }
