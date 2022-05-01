@@ -1,24 +1,23 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import useSWR from "swr";
+import { fetcher } from "../../utilities/featcher";
 
 const InventoryItems = () => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        axios.get("data.json").then(({ data }) => {
-            setItems(data.redmi);
-            console.log(data);
-        });
-    }, []);
+    const { data, loading, error } = useSWR(
+        "https://smartphone-warehouse-saad.herokuapp.com/inventories",
+        fetcher
+    );
+
     return (
         <section id="inventoryItems" className="container p-4 mx-auto">
             <h2 className="my-4 text-6xl text-center text-teal-500">
                 Inventory Items
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-5 ">
-                {items?.map((item) => (
+                {data?.inventory?.slice(0, 5)?.map((item) => (
                     <div
-                        key={item.name}
+                        key={item._id}
                         className="relative w-full rounded-md shadow-md ring-1 ring-slate-300 drop-shadow-md text-slate-800"
                     >
                         <div className="overflow-hidden">
@@ -49,7 +48,7 @@ const InventoryItems = () => {
                             </ul>
                         </div>
                         <NavLink
-                            to={`/inventory/${item.id}`}
+                            to={`/inventory/${item._id}`}
                             className="absolute bottom-0 w-full py-2 text-center bg-teal-500 rounded-md hover:bg-teal-600"
                         >
                             Stock Update

@@ -96,7 +96,7 @@ const Login = () => {
                             Sign In
                         </button>
                         <button
-                            className="flex items-center justify-center w-full gap-4 px-4 py-2 font-bold bg-teal-300 rounded hover:text-white text-slate-700 hover:bg-teal-700 focus:outline-none focus:shadow-outline"
+                            className="flex items-center justify-center w-full gap-4 px-4 py-2 font-bold text-white bg-red-700 rounded hover:bg-red-800 focus:outline-none focus:shadow-outline"
                             onClick={() => signInWithGoogle()}
                         >
                             <img
