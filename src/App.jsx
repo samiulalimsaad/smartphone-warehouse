@@ -5,7 +5,9 @@ import Blogs from "./Blogs";
 import Dashboard from "./Dashboard";
 import Footer from "./Footer";
 import Home from "./Home";
+import Inventory from "./Inventory";
 import Login from "./Login";
+import ManageItems from "./ManageItems";
 import Navbar from "./Navbar";
 import SignUp from "./SignUp";
 
@@ -24,6 +26,8 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/inventory/:id" element={<Inventory />} />
+                    <Route path="/manage-items" element={<ManageItems />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
