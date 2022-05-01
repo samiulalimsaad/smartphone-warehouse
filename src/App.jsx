@@ -10,6 +10,7 @@ import Login from "./Login";
 import ManageItems from "./ManageItems";
 import Navbar from "./Navbar";
 import SignUp from "./SignUp";
+import PrivateRoute from "./utilities/PrivateRoute";
 
 function App() {
     const [count, setCount] = useState(0);
@@ -25,9 +26,30 @@ function App() {
                     <Route path="/blogs" element={<Blogs />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/inventory/:id" element={<Inventory />} />
-                    <Route path="/manage-items" element={<ManageItems />} />
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <PrivateRoute>
+                                <Dashboard />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/inventory/:id"
+                        element={
+                            <PrivateRoute>
+                                <Inventory />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/manage-items"
+                        element={
+                            <PrivateRoute>
+                                <ManageItems />
+                            </PrivateRoute>
+                        }
+                    />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
