@@ -1,21 +1,15 @@
+import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
-import { NavLink } from "react-router-dom";
-import useSWR from "swr";
-import { fetcher } from "../../utilities/featcher";
+import { Link } from "react-router-dom";
 
-const InventoryItems = () => {
-    const { data, loading, error } = useSWR(
-        "https://smartphone-warehouse-saad.herokuapp.com/inventories",
-        fetcher
-    );
-
+const InventoryItems = ({ inventory }) => {
     return (
         <section id="inventoryItems" className="container p-4 mx-auto">
             <h2 className="my-4 text-6xl text-center text-teal-500">
                 Inventory Items
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-5 ">
-                {data?.inventory?.slice(0, 5)?.map((item) => (
+                {inventory?.map((item) => (
                     <div
                         key={item._id}
                         className="relative w-full rounded-md shadow-md ring-1 ring-slate-300 drop-shadow-md text-slate-800"
@@ -47,14 +41,23 @@ const InventoryItems = () => {
                                 ))}
                             </ul>
                         </div>
-                        <NavLink
+                        <Link
                             to={`/inventory/${item._id}`}
                             className="absolute bottom-0 w-full py-2 text-center bg-teal-500 rounded-md hover:bg-teal-600"
                         >
                             Stock Update
-                        </NavLink>
+                        </Link>
                     </div>
                 ))}
+            </div>
+            <div className="flex items-center justify-center mt-8">
+                <Link
+                    to="/manage-inventories"
+                    className="bottom-0 flex items-center justify-center px-4 py-2 text-center rounded-md text-teal-50 bg-sky-500 hover:bg-sky-600"
+                >
+                    Manage Inventories
+                    <ArrowRightIcon className="w-4 h-4 ml-2" />
+                </Link>
             </div>
         </section>
     );
