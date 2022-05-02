@@ -1,17 +1,24 @@
+import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../Firebase.init";
 import AddInventoryForm from "./AddInventoryForm";
+import NewInventoryDetail from "./NewInventoryDetail";
 
 const AddInventory = () => {
     const [user] = useAuthState(auth);
-    console.log(user);
+    const [newInventory, setNewInventory] = useState({});
+    console.log(newInventory);
     return (
-        <div>
-            <h1>Add Inventory</h1>
-            <div>
-                <AddInventoryForm user={user} />
-            </div>
+        <div
+            className={`container flex mx-auto my-20 ${
+                newInventory._id ? "justify-evenly" : "justify-center"
+            }`}
+        >
+            <AddInventoryForm user={user} setNewInventory={setNewInventory} />
+            {newInventory._id && (
+                <NewInventoryDetail inventory={newInventory} />
+            )}
         </div>
     );
 };

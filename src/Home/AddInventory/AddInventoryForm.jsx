@@ -3,16 +3,18 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 
-const AddInventoryForm = ({ user }) => {
+const AddInventoryForm = ({ user, setNewInventory }) => {
     const addInventory = async (values) => {
         values.images = [values.image];
         values.description = values.description.split(",");
+        values.supplierName = user?.displayName;
         try {
             const { data } = await axios.post(
                 `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
                 values
             );
             if (data.success) {
+                setNewInventory(data.inventory);
                 toast.success("Inventory Added", {
                     theme: "dark",
                 });
@@ -37,7 +39,9 @@ const AddInventoryForm = ({ user }) => {
     return (
         <div>
             <div className="p-8 bg-teal-100">
-                <h1>Add a New Inventory Item</h1>
+                <h1 className="text-2xl text-center">
+                    Add a New Inventory Item
+                </h1>
                 <Formik
                     initialValues={initialValues}
                     onSubmit={addInventory}
