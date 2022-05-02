@@ -8,6 +8,7 @@ const AddInventoryForm = ({ user, setNewInventory }) => {
         values.images = [values.image];
         values.description = values.description.split(",");
         values.supplierName = user?.displayName;
+        values.email = user?.email;
         try {
             const { data } = await axios.post(
                 `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
