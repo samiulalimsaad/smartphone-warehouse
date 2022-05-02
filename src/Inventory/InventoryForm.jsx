@@ -1,16 +1,12 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { auth } from "../Firebase.init";
 
-const InventoryForm = ({ inventory }) => {
-    const [user] = useAuthState(auth);
+const InventoryForm = ({ inventory, user }) => {
     const { id } = useParams();
-    console.log("first");
 
     const updateInventory = async (values) => {
         try {
