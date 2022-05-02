@@ -1,17 +1,20 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import useSWR from "swr";
+import { fetcher } from "../../utilities/featcher";
 
 const Banner = () => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        axios.get("data.json").then(({ data }) => {
-            setItems(data);
-            console.log(data);
-        });
-    }, []);
-
+    // const [items, setItems] = useState([]);
+    // useEffect(() => {
+    //     axios.get("data.json").then(({ data }) => {
+    //         setItems(data);
+    //     });
+    // }, []);
+    const { data } = useSWR(
+        `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
+        fetcher
+    );
     return (
         <Carousel
             autoPlay
@@ -31,7 +34,7 @@ const Banner = () => {
             autoFocus
             className="object-cover object-center "
         >
-            {items?.apple?.map((item) => (
+            {data?.inventory?.slice(0, 6).map((item) => (
                 <div key={item.name}>
                     <img
                         src={item.images[0]}
