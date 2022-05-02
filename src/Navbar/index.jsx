@@ -22,7 +22,7 @@ const Navbar = () => {
                         <CustomLink to="/blogs">Blogs</CustomLink>
                         {user && user?.emailVerified ? (
                             <>
-                                <CustomLink to="/manage-items">
+                                <CustomLink to="/manage-inventories">
                                     Manage Items
                                 </CustomLink>
                                 <CustomLink to="/add-item">

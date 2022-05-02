@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import Home from "./Home";
 import Inventory from "./Inventory";
 import Login from "./Login";
-import ManageItems from "./ManageItems";
+import ManageInventory from "./ManageInventory";
 import Navbar from "./Navbar";
 import SignUp from "./SignUp";
 import PrivateRoute from "./utilities/PrivateRoute";
@@ -43,10 +43,10 @@ function App() {
                         }
                     />
                     <Route
-                        path="/manage-items"
+                        path="/manage-inventories"
                         element={
                             <PrivateRoute>
-                                <ManageItems />
+                                <ManageInventory />
                             </PrivateRoute>
                         }
                     />
