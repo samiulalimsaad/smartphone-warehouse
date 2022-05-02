@@ -15,26 +15,19 @@ const InventoryItems = ({ inventory }) => {
         console.log(item);
     };
 
-    const deleteItem = (item) => {
-        console.log(item);
-    };
-
     return (
         <div className="">
-            <div
-                key={inventory?._id}
-                className="relative w-full rounded-md shadow-md ring-1 ring-slate-300 drop-shadow-md text-slate-800"
-            >
+            <div className="relative w-full rounded-md shadow-md ring-1 ring-slate-300 drop-shadow-md text-slate-800">
                 <div className="flex">
-                    <div className="flex items-center justify-center overflow-hidden">
-                        <img
-                            src={inventory?.images[0]}
-                            alt=""
-                            className="object-contain object-center w-auto duration-500 h-96 hover:scale-110"
-                        />
-                    </div>
-                    <div className="gap-8 p-8 flexs pb-14">
-                        <div>
+                    <div className="p-8 pb-14">
+                        <div className="flex items-center justify-center overflow-hidden">
+                            <img
+                                src={inventory?.images[0]}
+                                alt=""
+                                className="object-contain object-center w-auto duration-500 h-96 hover:scale-110"
+                            />
+                        </div>
+                        <div className="my-4">
                             <h3 className="text-2xl text-slate-900">
                                 {inventory?.name}
                             </h3>
@@ -49,13 +42,13 @@ const InventoryItems = ({ inventory }) => {
                             </p>
                         </div>
                         <ul className="capitalize text-md text-slate-600">
-                            {/* {inventory?.description.join(", ")} */}
                             <span className="text-xl capitalize">
                                 Description:
                             </span>
-                            {inventory?.description.map((desc, i) => (
+                            {inventory?.description.join(", ")}
+                            {/* {inventory?.description.map((desc, i) => (
                                 <li key={desc + i}>{desc}</li>
-                            ))}
+                            ))} */}
                         </ul>
                     </div>
                 </div>
@@ -65,12 +58,6 @@ const InventoryItems = ({ inventory }) => {
                         onClick={() => deliverItem(data?.inventory)}
                     >
                         Deliver
-                    </button>
-                    <button
-                        className="w-full px-4 py-2 text-center bg-red-500 rounded-md hover:bg-red-600 text-slate-50"
-                        onClick={() => deleteItem(data?.inventory)}
-                    >
-                        Delete
                     </button>
                 </div>
             </div>

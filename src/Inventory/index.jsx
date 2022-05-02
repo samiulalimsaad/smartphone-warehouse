@@ -1,7 +1,8 @@
+import { ArrowRightIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
 import useTitle from "../utilities/useTitle";
@@ -34,19 +35,32 @@ const Inventory = () => {
                 Inventory Items
             </h2>
             {inventory.inventory ? (
-                <div className="flex p-8 justify-evenly">
-                    <div className="w-1/2 h-screen p-8 overflow-y-scroll">
-                        <InventoryItems inventory={inventory.inventory} />
+                <div>
+                    <div className="flex p-8 justify-evenly">
+                        <div className="w-1/2 h-screen p-8 overflow-y-scroll">
+                            <InventoryItems inventory={inventory.inventory} />
+                        </div>
+                        <div className="w-1/2 h-screen p-8">
+                            <InventoryForm
+                                inventory={inventory.inventory}
+                                user={user}
+                            />
+                        </div>
                     </div>
-                    <div className="w-1/2 h-screen p-8">
-                        <InventoryForm
-                            inventory={inventory.inventory}
-                            user={user}
-                        />
+                    <div className="flex items-center justify-center mt-8">
+                        <Link
+                            to="/manage-inventories"
+                            className="bottom-0 flex items-center justify-center px-4 py-2 text-center rounded-md text-teal-50 bg-sky-500 hover:bg-sky-600"
+                        >
+                            Manage Inventories
+                            <ArrowRightIcon className="w-4 h-4 ml-2" />
+                        </Link>
                     </div>
                 </div>
             ) : (
-                <Loading />
+                <div className="h-screen">
+                    <Loading />
+                </div>
             )}
         </section>
     );
