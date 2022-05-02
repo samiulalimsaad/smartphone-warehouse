@@ -17,7 +17,7 @@ const InventoryItems = ({ inventory }) => {
 
     return (
         <div className="">
-            <div className="relative w-full rounded-md shadow-md ring-1 ring-slate-300 drop-shadow-md text-slate-800">
+            <div className="relative w-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
                 <div className="flex">
                     <div className="p-8 pb-14">
                         <div className="flex items-center justify-center overflow-hidden">

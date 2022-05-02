@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher } from "../utilities/featcher";
 import useTitle from "../utilities/useTitle";
@@ -28,9 +28,19 @@ const ManageInventory = () => {
 
     return (
         <section id="inventoryItems" className="container p-20 mx-auto">
-            <h2 className="my-4 text-6xl text-center text-teal-500">
-                Inventory Items List
-            </h2>
+            <div className="flex items-center justify-between">
+                <h2 className="my-4 text-6xl text-center text-teal-500">
+                    Inventory Items List
+                </h2>
+                <div>
+                    <Link
+                        to="/add-inventory"
+                        className="px-4 py-2 bg-teal-600 rounded-md hover:bg-teal-700 text-slate-50"
+                    >
+                        Add a new Item
+                    </Link>
+                </div>
+            </div>
             <InventoriesTable inventory={data?.inventory} />
         </section>
     );

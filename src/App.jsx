@@ -5,6 +5,7 @@ import Blogs from "./Blogs";
 import Dashboard from "./Dashboard";
 import Footer from "./Footer";
 import Home from "./Home";
+import AddInventory from "./Home/AddInventory";
 import Inventory from "./Inventory";
 import Login from "./Login";
 import ManageInventory from "./ManageInventory";
@@ -47,6 +48,14 @@ function App() {
                         element={
                             <PrivateRoute>
                                 <ManageInventory />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/add-inventory"
+                        element={
+                            <PrivateRoute>
+                                <AddInventory />
                             </PrivateRoute>
                         }
                     />

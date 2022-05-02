@@ -23,10 +23,10 @@ const Navbar = () => {
                         {user && user?.emailVerified ? (
                             <>
                                 <CustomLink to="/manage-inventories">
-                                    Manage Items
+                                    Manage Inventories
                                 </CustomLink>
-                                <CustomLink to="/add-item">
-                                    Add Items
+                                <CustomLink to="/add-inventory">
+                                    Add Inventory
                                 </CustomLink>
                                 <CustomLink to="/my-item">My Items</CustomLink>
                                 <CustomLink to="/dashboard">

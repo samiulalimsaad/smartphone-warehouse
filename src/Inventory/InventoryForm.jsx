@@ -38,7 +38,9 @@ const InventoryForm = ({ inventory, user }) => {
 
     return (
         <div className="p-8 bg-teal-100">
-            <h1>Add a New Inventory Item</h1>
+            <h1 className="text-3xl text-center text-teal-900">
+                Restock the Inventory Item
+            </h1>
             <Formik
                 initialValues={initialValues}
                 onSubmit={updateInventory}
@@ -65,7 +67,7 @@ const InventoryForm = ({ inventory, user }) => {
                                         name="supplierName"
                                         autoComplete="supplierName"
                                         required
-                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed bg-slate-50 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed bg-slate-100 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                                         placeholder={user?.displayName}
                                         readOnly
                                         disabled
@@ -90,7 +92,7 @@ const InventoryForm = ({ inventory, user }) => {
                                         name="email"
                                         autoComplete="email"
                                         required
-                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed bg-slate-50 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed bg-slate-100 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                                         placeholder={user?.email}
                                         readOnly
                                         disabled
@@ -118,8 +120,10 @@ const InventoryForm = ({ inventory, user }) => {
                                         type="name"
                                         autoComplete="name"
                                         required
-                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm bg-slate-100 "
                                         placeholder="Inventory Name"
+                                        readOnly
+                                        disabled
                                     />
                                     <ErrorMessage name="name">
                                         {(msg) => (
@@ -141,8 +145,10 @@ const InventoryForm = ({ inventory, user }) => {
                                         name="image"
                                         autoComplete="image"
                                         required
-                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm bg-slate-100 "
                                         placeholder="Inventory Image Link"
+                                        readOnly
+                                        disabled
                                     />
                                     <ErrorMessage name="image">
                                         {(msg) => (
@@ -167,8 +173,10 @@ const InventoryForm = ({ inventory, user }) => {
                                         type="number"
                                         autoComplete="price"
                                         required
-                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none rounded-b-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed rounded-b-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm bg-slate-100 "
                                         placeholder="price"
+                                        readOnly
+                                        disabled
                                     />
                                     <ErrorMessage name="price">
                                         {(msg) => (
@@ -219,8 +227,10 @@ const InventoryForm = ({ inventory, user }) => {
                                         autoComplete="description"
                                         as="textarea"
                                         required
-                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none rounded-b-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none cursor-not-allowed rounded-b-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm bg-slate-100 "
                                         placeholder="Description separate by comma (,)"
+                                        readOnly
+                                        disabled
                                     />
                                 </div>
                                 <ErrorMessage name="description">
