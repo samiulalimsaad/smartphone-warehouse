@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
     useAuthState,
@@ -30,6 +31,25 @@ const Login = () => {
 
     useEffect(() => {
         if (user1 || user || userGoogle) {
+            console.log({ user1 });
+            axios
+                .post(
+                    `https://smartphone-warehouse-saad.herokuapp.com/login`,
+                    {
+                        email: user1?.email,
+                        name: user1?.displayName,
+                    },
+                    {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                    }
+                )
+                .then(({ data }) => {
+                    if (data.success) {
+                        localStorage.setItem("accessToken", data.token);
+                    }
+                });
             navigate(from, { replace: true });
         }
     }, [user, user1, userGoogle]);
