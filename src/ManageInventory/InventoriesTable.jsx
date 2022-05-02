@@ -4,9 +4,7 @@ import React from "react";
 import { useTable } from "react-table";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useSWR from "swr";
 import Loading from "../Loading";
-import { fetcher } from "../utilities/featcher";
 
 const columns = [
     {
@@ -31,23 +29,16 @@ const columns = [
     },
 ];
 
-const InventoriesTable = () => {
-    const { data } = useSWR(
-        `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
-        fetcher,
-        {
-            refreshInterval: 1500,
-        }
-    );
-    console.log(data);
-    if (!data) {
+const InventoriesTable = ({ inventory }) => {
+    if (!inventory) {
         return (
             <div className="h-screen">
                 <Loading />;
             </div>
         );
     }
-    const tableInstance = useTable({ data: data?.inventory, columns });
+
+    const tableInstance = useTable({ data: inventory, columns });
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
         tableInstance;
