@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
@@ -9,6 +10,7 @@ const MyInventory = () => {
     const [myItems, setMyItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
@@ -26,7 +28,12 @@ const MyInventory = () => {
                 .then(({ data }) => {
                     if (data.success) {
                         setMyItems(data.inventory);
+                    } else {
+                        navigate("/login");
                     }
+                })
+                .catch((err) => {
+                    err;
                 })
                 .finally(() => {
                     setLoading(false);
