@@ -46,13 +46,15 @@ const InventoriesTable = ({ inventory }) => {
 
     const deleteItem = async (item) => {
         try {
-            const { data } = await axios.delete(
-                `https://smartphone-warehouse-saad.herokuapp.com/inventories/${item.original._id}`
-            );
-            if (data.success) {
-                toast.success(data.message, {
-                    theme: "dark",
-                });
+            if (confirm("Do you want to proceed?")) {
+                const { data } = await axios.delete(
+                    `https://smartphone-warehouse-saad.herokuapp.com/inventories/${item.original._id}`
+                );
+                if (data.success) {
+                    toast.success(data.message, {
+                        theme: "dark",
+                    });
+                }
             }
         } catch (error) {
             toast.error("Operation Failed : " + error.message, {

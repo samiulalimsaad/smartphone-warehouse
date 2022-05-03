@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "react-toastify/dist/ReactToastify.css";
-import { auth } from "../../Firebase.init";
+import { auth } from "../Firebase.init";
 import AddInventoryForm from "./AddInventoryForm";
 import NewInventoryDetail from "./NewInventoryDetail";
 

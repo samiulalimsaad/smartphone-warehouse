@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const AddInventoryForm = ({ user, setNewInventory }) => {
     const addInventory = async (values) => {
-        values.images = [values.image];
+        values.images = values.image.split(",");
         values.description = values.description.split(",");
         values.supplierName = user?.displayName;
         values.email = user?.email;
