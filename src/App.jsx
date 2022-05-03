@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./404";
+import AddInventory from "./AddInventory";
 import Blogs from "./Blogs";
 import Dashboard from "./Dashboard";
 import Footer from "./Footer";
 import Home from "./Home";
-import AddInventory from "./Home/AddInventory";
 import Inventory from "./Inventory";
 import Login from "./Login";
 import ManageInventory from "./ManageInventory";
+import MyInventory from "./Myinvebtory";
 import Navbar from "./Navbar";
 import SignUp from "./SignUp";
 import PrivateRoute from "./utilities/PrivateRoute";
@@ -56,6 +57,14 @@ function App() {
                         element={
                             <PrivateRoute>
                                 <AddInventory />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/my-inventory"
+                        element={
+                            <PrivateRoute>
+                                <MyInventory />
                             </PrivateRoute>
                         }
                     />

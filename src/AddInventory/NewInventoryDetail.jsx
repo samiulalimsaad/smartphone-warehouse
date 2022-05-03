@@ -32,19 +32,8 @@ const NewInventoryDetail = ({ inventory }) => {
                                 Description:
                             </span>
                             {inventory?.description.join(", ")}
-                            {/* {inventory?.description.map((desc, i) => (
-                                <li key={desc + i}>{desc}</li>
-                            ))} */}
                         </ul>
                     </div>
-                </div>
-                <div className="absolute bottom-0 flex w-full">
-                    <button
-                        className="w-full px-4 py-2 text-center bg-teal-500 rounded-md hover:bg-teal-600 text-slate-50"
-                        onClick={() => deliverItem(data?.inventory)}
-                    >
-                        Deliver
-                    </button>
                 </div>
             </div>
         </div>

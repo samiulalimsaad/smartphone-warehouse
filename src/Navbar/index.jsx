@@ -28,7 +28,9 @@ const Navbar = () => {
                                 <CustomLink to="/add-inventory">
                                     Add Inventory
                                 </CustomLink>
-                                <CustomLink to="/my-item">My Items</CustomLink>
+                                <CustomLink to="/my-inventory">
+                                    My Inventory
+                                </CustomLink>
                                 <CustomLink to="/dashboard">
                                     Dashboard
                                 </CustomLink>
