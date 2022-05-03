@@ -1,4 +1,5 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import {
     useAuthState,
@@ -31,26 +32,30 @@ const Login = () => {
 
     useEffect(() => {
         if (user1 || user || userGoogle) {
-            console.log({ user1 });
+            const userData = {
+                email: user1?.email,
+                name: user1?.displayName,
+            };
+            console.log({ userData });
             axios
                 .post(
                     `https://smartphone-warehouse-saad.herokuapp.com/login`,
+                    userData,
                     {
-                        email: user1?.email,
-                        name: user1?.displayName,
-                    },
-                    {
-                        headers: {
+                        header: {
                             "Access-Control-Allow-Origin": "*",
+                            "Access-Control-Allow-Methods": "*",
                         },
                     }
                 )
                 .then(({ data }) => {
                     if (data.success) {
                         localStorage.setItem("accessToken", data.token);
+                        navigate(from, { replace: true });
+                    } else {
+                        signOut(auth);
                     }
                 });
-            navigate(from, { replace: true });
         }
     }, [user, user1, userGoogle]);
 
