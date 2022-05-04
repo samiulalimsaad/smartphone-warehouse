@@ -9,7 +9,7 @@ import Home from "./Home";
 import Inventory from "./Inventory";
 import Login from "./Login";
 import ManageInventory from "./ManageInventory";
-import MyInventory from "./Myinvebtory";
+import MyInventory from "./Myinventory";
 import Navbar from "./Navbar";
 import SignUp from "./SignUp";
 import PrivateRoute from "./utilities/PrivateRoute";

@@ -36,7 +36,6 @@ const Login = () => {
                 email: user1?.email,
                 name: user1?.displayName,
             };
-            console.log({ userData });
             axios
                 .post(
                     `https://smartphone-warehouse-saad.herokuapp.com/login`,

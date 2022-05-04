@@ -2,7 +2,6 @@ import { TrashIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import React from "react";
 import { useTable } from "react-table";
-import { usePagination } from "react-table/dist/react-table.development";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Loading";
@@ -39,7 +38,7 @@ const InventoriesTable = ({ inventory }) => {
         );
     }
 
-    const tableInstance = useTable({ data: inventory, columns }, usePagination);
+    const tableInstance = useTable({ data: inventory, columns });
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
         tableInstance;
@@ -65,7 +64,10 @@ const InventoriesTable = ({ inventory }) => {
 
     return (
         <div>
-            <table className="w-full table-auto" {...getTableProps()}>
+            <table
+                className="text-xs table-auto sm:w-full sm:text-base"
+                {...getTableProps()}
+            >
                 <thead className="h-12 bg-teal-500 border border-teal-500 text-slate-50">
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>

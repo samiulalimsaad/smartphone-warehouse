@@ -5,12 +5,6 @@ import useSWR from "swr";
 import { fetcher } from "../../utilities/featcher";
 
 const Banner = () => {
-    // const [items, setItems] = useState([]);
-    // useEffect(() => {
-    //     axios.get("data.json").then(({ data }) => {
-    //         setItems(data);
-    //     });
-    // }, []);
     const { data } = useSWR(
         `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
         fetcher

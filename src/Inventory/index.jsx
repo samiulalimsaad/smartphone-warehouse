@@ -32,15 +32,15 @@ const Inventory = () => {
             </h2>
             {user && data ? (
                 <div>
-                    <div className="flex p-8 justify-evenly">
-                        <div className="w-1/2 h-screen p-8 overflow-y-scroll">
-                            <InventoryItems inventory={data?.inventory} />
-                        </div>
-                        <div className="w-1/2 h-screen p-8">
+                    <div className="sm:p-8 sm:flex justify-evenly">
+                        <div className="sm:p-8 sm:w-1/2">
                             <InventoryForm
                                 inventory={data?.inventory}
                                 user={user}
                             />
+                        </div>
+                        <div className="overflow-y-scroll sm:p-8 sm:w-1/2">
+                            <InventoryItems inventory={data?.inventory} />
                         </div>
                     </div>
                     <div className="flex items-center justify-center mt-8">

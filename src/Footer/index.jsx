@@ -20,7 +20,7 @@ const Footer = () => {
                     You can also use our App.
                 </p>
             </div>
-            <div className="flex text-center sm:w-1/2">
+            <div className="text-center sm:flex sm:w-1/2">
                 <div className="text-center sm:w-1/2">
                     <h2 className="my-4 text-2xl">Information</h2>
                     <div className="space-y-1">
