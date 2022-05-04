@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Loading from "../Loading";
 import useTitle from "../utilities/useTitle";
 import InventoriesTable from "./InventoriesTable";
 
@@ -42,7 +43,16 @@ const ManageInventory = () => {
                 </div>
             </div>
             <div>
-                <InventoriesTable inventory={inventory} />
+                {inventory?.length ? (
+                    <InventoriesTable
+                        inventory={inventory}
+                        setInventory={setInventory}
+                    />
+                ) : (
+                    <div className="h-96">
+                        <Loading />
+                    </div>
+                )}
             </div>
             <div className="flex mt-20">
                 {new Array(total).fill(1).map((v, i) => (

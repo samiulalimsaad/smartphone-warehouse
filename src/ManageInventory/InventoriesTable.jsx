@@ -1,5 +1,4 @@
 import { TrashIcon } from "@heroicons/react/solid";
-import axios from "axios";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,9 +7,9 @@ import Loading from "../Loading";
 
 const columns = ["Name", "brand", "Quantity", "Price", "Supplier Name"];
 
-const InventoriesTable = ({ inventory }) => {
+const InventoriesTable = ({ inventory, setInventory }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [accepted, setAccepted] = useState(false);
+    const [id, setId] = useState("");
 
     if (!inventory) {
         return (
@@ -23,16 +22,9 @@ const InventoriesTable = ({ inventory }) => {
     const deleteItem = async (item) => {
         try {
             setIsOpen(true);
-            if (accepted) {
-                const { data } = await axios.delete(
-                    `https://smartphone-warehouse-saad.herokuapp.com/inventories/${item.original._id}`
-                );
-                if (data.success) {
-                    toast.success(data.message, {
-                        theme: "dark",
-                    });
-                }
-            }
+            setId(item._id);
+            const items = inventory.filter((v) => v._id !== item._id);
+            setInventory(items);
         } catch (error) {
             toast.error("Operation Failed : " + error.message, {
                 theme: "dark",
@@ -85,11 +77,13 @@ const InventoriesTable = ({ inventory }) => {
                 </tbody>
             </table>
             <ToastContainer />
-            <ConfirmationModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                setAccepted={setAccepted}
-            />
+            <div className="overflow-y-scroll">
+                <ConfirmationModal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    id={id}
+                />
+            </div>
         </div>
     );
 };

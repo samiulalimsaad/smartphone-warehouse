@@ -11,7 +11,7 @@ import useTitle from "../utilities/useTitle";
 const MyInventory = () => {
     useTitle("My Inventories");
     const [isOpen, setIsOpen] = useState(false);
-    const [accepted, setAccepted] = useState(false);
+    const [id, setId] = useState("");
     const [myItems, setMyItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user] = useAuthState(auth);
@@ -42,24 +42,14 @@ const MyInventory = () => {
                     setLoading(false);
                 });
         }
-    }, [user]);
+    }, [user, myItems]);
 
     const deleteItem = async (id) => {
         try {
             setIsOpen(true);
-            if (accepted) {
-                const { data } = await axios.delete(
-                    `https://smartphone-warehouse-saad.herokuapp.com/inventories/${id}`
-                );
-                if (data.success) {
-                    toast.success(data.message, {
-                        theme: "dark",
-                    });
-
-                    const items = myItems.filter((v) => v._id !== id);
-                    setMyItems(items);
-                }
-            }
+            setId(id);
+            const items = myItems.filter((v) => v._id !== id);
+            setMyItems(items);
         } catch (error) {
             toast.error("Operation Failed : " + error.message, {
                 theme: "dark",
@@ -96,7 +86,7 @@ const MyInventory = () => {
             <div className="grid gap-4 sm:grid-cols-4">
                 {myItems?.map((item) => (
                     <div key={item._id} className="">
-                        <div className="relative w-full h-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
+                        <div className="w-full h-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
                             <div className="flex">
                                 <div className="p-8 pb-14">
                                     <div className="flex items-center justify-center overflow-hidden">
@@ -125,9 +115,6 @@ const MyInventory = () => {
                                             Description:
                                         </span>
                                         {item?.description.join(", ")}
-                                        {/* {inventory?.description.map((desc, i) => (
-                                <li key={desc + i}>{desc}</li>
-                            ))} */}
                                     </ul>
                                 </div>
                             </div>
@@ -144,11 +131,13 @@ const MyInventory = () => {
                 ))}
             </div>
             <ToastContainer />
-            <ConfirmationModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                setAccepted={setAccepted}
-            />
+            <div className="overflow-y-scroll">
+                <ConfirmationModal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    id={id}
+                />
+            </div>
         </div>
     );
 };

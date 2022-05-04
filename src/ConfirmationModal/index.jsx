@@ -1,11 +1,32 @@
 import { Dialog } from "@headlessui/react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const ConfirmationModal = ({ isOpen, setIsOpen, setAccepted }) => {
+const ConfirmationModal = ({ isOpen, setIsOpen, id }) => {
+    const deleteItem = async (item) => {
+        try {
+            setIsOpen(true);
+            const { data } = await axios.delete(
+                `https://smartphone-warehouse-saad.herokuapp.com/inventories/${id}`
+            );
+            if (data.success) {
+                toast.success(data.message, {
+                    theme: "dark",
+                });
+                setIsOpen(false);
+            }
+        } catch (error) {
+            toast.error("Operation Failed : " + error.message, {
+                theme: "dark",
+            });
+        }
+    };
+
     return (
         <Dialog
             open={isOpen}
             onClose={() => setIsOpen(false)}
-            className={`absolute h-screen w-full inset-0 backdrop-blur-sm text-slate-900 flex justify-center items-center `}
+            className={`absolute h-full w-full inset-0 backdrop-blur-sm text-slate-900 flex justify-center items-center `}
         >
             <Dialog.Panel className="p-4 bg-white rounded-md shadow-md">
                 <Dialog.Title className="text-3xl font-semibold text-slate-700">
@@ -17,17 +38,13 @@ const ConfirmationModal = ({ isOpen, setIsOpen, setAccepted }) => {
                         className="px-6 py-3 bg-red-500"
                         onClick={() => {
                             setIsOpen(false);
-                            setAccepted(false);
                         }}
                     >
                         Cancel
                     </button>
                     <button
                         className="px-6 py-3 bg-teal-500"
-                        onClick={() => {
-                            setIsOpen(false);
-                            setAccepted(true);
-                        }}
+                        onClick={deleteItem}
                     >
                         Yes
                     </button>

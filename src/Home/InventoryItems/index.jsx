@@ -43,7 +43,7 @@ const InventoryItems = ({ inventory }) => {
                         </div>
                         <Link
                             to={`/inventory/${item._id}`}
-                            className="absolute bottom-0 w-full py-2 text-center bg-teal-500 rounded-md hover:bg-teal-600"
+                            className="absolute bottom-0 w-full py-2 text-center bg-teal-500 rounded-md hover:bg-teal-600 text-teal-50"
                         >
                             Stock Update
                         </Link>
