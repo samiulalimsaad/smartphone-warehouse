@@ -1,31 +1,27 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useParams } from "react-router-dom";
+import useSWR from "swr";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
+import { fetcher } from "../utilities/featcher";
 import useTitle from "../utilities/useTitle";
 import InventoryForm from "./InventoryForm";
 import InventoryItems from "./InventoryItems";
 
 const Inventory = () => {
-    useTitle("Inventory Items");
+    useTitle("Inventory Item");
     const { id } = useParams();
-    const [inventory, setInventory] = useState({});
     const [user] = useAuthState(auth);
 
-    useEffect(() => {
-        axios
-            .get(
-                `https://smartphone-warehouse-saad.herokuapp.com/inventories/${id}`
-            )
-            .then(({ data }) => {
-                setInventory(data);
-                console.log(data);
-            });
-    }, [id, user]);
-
+    const { data, error } = useSWR(
+        `https://smartphone-warehouse-saad.herokuapp.com/inventories/${id}`,
+        fetcher,
+        {
+            refreshInterval: 1500,
+        }
+    );
     return (
         <section
             id="inventoryItems"
@@ -34,15 +30,15 @@ const Inventory = () => {
             <h2 className="my-4 text-6xl text-center text-teal-500">
                 Inventory Items
             </h2>
-            {inventory.inventory ? (
+            {user ? (
                 <div>
                     <div className="flex p-8 justify-evenly">
                         <div className="w-1/2 h-screen p-8 overflow-y-scroll">
-                            <InventoryItems inventory={inventory.inventory} />
+                            <InventoryItems inventory={data?.inventory} />
                         </div>
                         <div className="w-1/2 h-screen p-8">
                             <InventoryForm
-                                inventory={inventory.inventory}
+                                inventory={data?.inventory}
                                 user={user}
                             />
                         </div>

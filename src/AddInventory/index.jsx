@@ -20,14 +20,21 @@ const AddInventory = () => {
 
     return (
         <div
-            className={`container flex mx-auto my-20 ${
+            className={`container flex mx-auto p-20 gap-8 ${
                 newInventory._id ? "justify-evenly" : "justify-center"
             }`}
         >
-            <AddInventoryForm user={user} setNewInventory={setNewInventory} />
-            {newInventory._id && (
-                <NewInventoryDetail inventory={newInventory} />
-            )}
+            <div className="w-1/2">
+                <AddInventoryForm
+                    user={user}
+                    setNewInventory={setNewInventory}
+                />
+            </div>
+            <div className="w-1/2">
+                {newInventory._id && (
+                    <NewInventoryDetail inventory={newInventory} />
+                )}
+            </div>
         </div>
     );
 };

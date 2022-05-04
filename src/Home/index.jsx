@@ -4,6 +4,7 @@ import Loading from "../Loading";
 import { fetcher } from "../utilities/featcher";
 import useTitle from "../utilities/useTitle";
 import Banner from "./Banner";
+import ExtraSection from "./ExtraSection";
 import InventoryItems from "./InventoryItems";
 
 const Home = () => {
@@ -24,6 +25,7 @@ const Home = () => {
                     <Loading />
                 </div>
             )}
+            <ExtraSection />
         </div>
     );
 };

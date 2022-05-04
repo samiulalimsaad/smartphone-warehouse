@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
+import useTitle from "../utilities/useTitle";
 
 const MyInventory = () => {
+    useTitle("My Inventories");
     const [myItems, setMyItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user] = useAuthState(auth);
@@ -90,10 +92,10 @@ const MyInventory = () => {
             <h1 className="my-8 text-center text-teal-600 text-7xl">
                 My Inventories
             </h1>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-4 gap-4">
                 {myItems?.map((item) => (
                     <div key={item._id} className="">
-                        <div className="relative w-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
+                        <div className="relative w-full h-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
                             <div className="flex">
                                 <div className="p-8 pb-14">
                                     <div className="flex items-center justify-center overflow-hidden">
