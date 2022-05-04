@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const InventoryItems = ({ inventory }) => {
     const { id } = useParams();
@@ -24,7 +24,7 @@ const InventoryItems = ({ inventory }) => {
     };
 
     return (
-        <div className="relative w-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
+        <div className="w-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
             <div className="flex">
                 <div className="p-8 pb-14">
                     <div className="flex items-center justify-center overflow-hidden">
@@ -62,7 +62,6 @@ const InventoryItems = ({ inventory }) => {
                     Deliver
                 </button>
             </div>
-            <ToastContainer />
         </div>
     );
 };

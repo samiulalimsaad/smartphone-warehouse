@@ -2,7 +2,7 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const InventoryForm = ({ inventory, user }) => {
@@ -254,7 +254,6 @@ const InventoryForm = ({ inventory, user }) => {
                     </Form>
                 )}
             </Formik>
-            <ToastContainer />
         </div>
     );
 };

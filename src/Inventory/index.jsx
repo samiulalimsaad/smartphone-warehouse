@@ -2,6 +2,7 @@ import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import useSWR from "swr";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
@@ -39,7 +40,7 @@ const Inventory = () => {
                                 user={user}
                             />
                         </div>
-                        <div className="overflow-y-scroll sm:p-8 sm:w-1/2">
+                        <div className="sm:p-8 sm:w-1/2">
                             <InventoryItems inventory={data?.inventory} />
                         </div>
                     </div>
@@ -58,6 +59,7 @@ const Inventory = () => {
                     <Loading />
                 </div>
             )}
+            <ToastContainer />
         </section>
     );
 };
