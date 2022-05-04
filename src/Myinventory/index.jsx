@@ -37,9 +37,7 @@ const MyInventory = () => {
                         navigate("/login");
                     }
                 })
-                .catch((err) => {
-                    err;
-                })
+                .catch((err) => {})
                 .finally(() => {
                     setLoading(false);
                 });

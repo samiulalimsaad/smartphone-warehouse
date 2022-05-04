@@ -1,20 +1,30 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import useSWR from "swr";
-import { fetcher } from "../utilities/featcher";
 import useTitle from "../utilities/useTitle";
 import InventoriesTable from "./InventoriesTable";
 
 const ManageInventory = () => {
     useTitle("Manage Items");
     const { id } = useParams();
+    const [limit, setLimit] = useState(5);
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
+    const [inventory, setInventory] = useState([]);
 
-    const { data } = useSWR(
-        `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
-        fetcher,
-        {
-            refreshInterval: 1500,
-        }
-    );
+    useEffect(() => {
+        axios
+            .get(
+                `https://smartphone-warehouse-saad.herokuapp.com/inventories?page=${page}&&limit=${limit}`
+            )
+            .then(({ data }) => {
+                if (data.success) {
+                    setInventory(data.inventory);
+                    setTotal(data.total);
+                }
+            })
+            .catch((err) => {});
+    }, [page, limit]);
 
     return (
         <section id="inventoryItems" className="container p-4 mx-auto sm:p-20">
@@ -31,7 +41,33 @@ const ManageInventory = () => {
                     </Link>
                 </div>
             </div>
-            <InventoriesTable inventory={data?.inventory} />
+            <div>
+                <InventoriesTable inventory={inventory} />
+            </div>
+            <div className="flex mt-20">
+                {new Array(total).fill(1).map((v, i) => (
+                    <button
+                        key={i + 1}
+                        className={`px-4 py-3 border border-teal-600 hover:text-teal-50 ${
+                            page === i + 1
+                                ? "bg-teal-600 hover:bg-teal-700 text-teal-50"
+                                : "hover:bg-teal-600"
+                        }`}
+                        onClick={() => setPage(i + 1)}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+                <select
+                    className="px-4 py-3 border border-teal-600"
+                    name="page"
+                    onClick={(e) => setLimit(+e.target.value)}
+                >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
         </section>
     );
 };
