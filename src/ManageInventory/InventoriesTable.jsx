@@ -1,35 +1,17 @@
 import { TrashIcon } from "@heroicons/react/solid";
 import axios from "axios";
-import React from "react";
-import { useTable } from "react-table";
+import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConfirmationModal from "../ConfirmationModal";
 import Loading from "../Loading";
 
-const columns = [
-    {
-        Header: "Name",
-        accessor: "name",
-    },
-    {
-        Header: "brand",
-        accessor: "brandName",
-    },
-    {
-        Header: "Quantity",
-        accessor: "quantity",
-    },
-    {
-        Header: "Price",
-        accessor: "price",
-    },
-    {
-        Header: "Supplier Name",
-        accessor: "supplierName",
-    },
-];
+const columns = ["Name", "brand", "Quantity", "Price", "Supplier Name"];
 
 const InventoriesTable = ({ inventory }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [accepted, setAccepted] = useState(false);
+
     if (!inventory) {
         return (
             <div className="h-screen">
@@ -38,14 +20,10 @@ const InventoriesTable = ({ inventory }) => {
         );
     }
 
-    const tableInstance = useTable({ data: inventory, columns });
-
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-        tableInstance;
-
     const deleteItem = async (item) => {
         try {
-            if (confirm("Do you want to proceed?")) {
+            setIsOpen(true);
+            if (accepted) {
                 const { data } = await axios.delete(
                     `https://smartphone-warehouse-saad.herokuapp.com/inventories/${item.original._id}`
                 );
@@ -64,51 +42,54 @@ const InventoriesTable = ({ inventory }) => {
 
     return (
         <div>
-            <table
-                className="text-xs table-auto sm:w-full sm:text-base"
-                {...getTableProps()}
-            >
+            <table className="text-xs table-auto sm:w-full sm:text-base">
                 <thead className="h-12 bg-teal-500 border border-teal-500 text-slate-50">
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th {...column.getHeaderProps()}>
-                                    {column.render("Header")}
-                                </th>
-                            ))}
-                            <th>Actions</th>
+                    <tr>
+                        {columns.map((column) => (
+                            <th key={column}>{column}</th>
+                        ))}
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody className="text-center">
+                    {inventory?.map((item) => (
+                        <tr
+                            key={item._id}
+                            className="border border-t-0 border-teal-500 "
+                        >
+                            <td className="py-6 border border-teal-500">
+                                {item.name}
+                            </td>
+                            <td className="py-6 border border-teal-500">
+                                {item.brandName}
+                            </td>
+                            <td className="py-6 border border-teal-500">
+                                {item.quantity}
+                            </td>
+                            <td className="py-6 border border-teal-500">
+                                {item.price}
+                            </td>
+                            <td className="py-6 border border-teal-500">
+                                {item.supplierName}
+                            </td>
+                            <td>
+                                <button
+                                    className="p-2 text-red-600 bg-red-300 rounded-full hover:bg-red-400 hover:text-slate-50"
+                                    onClick={() => deleteItem(item)}
+                                >
+                                    <TrashIcon className="w-4 h-4" />
+                                </button>
+                            </td>
                         </tr>
                     ))}
-                </thead>
-                <tbody className="text-center" {...getTableBodyProps()}>
-                    {rows.map((row) => {
-                        prepareRow(row);
-                        return (
-                            <tr
-                                className="h-16 py-4 border border-t-0 border-teal-500"
-                                {...row.getRowProps()}
-                            >
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                            {cell.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                                <td>
-                                    <button
-                                        className="p-2 text-red-600 bg-red-300 rounded-full hover:bg-red-400 hover:text-slate-50"
-                                        onClick={() => deleteItem(row)}
-                                    >
-                                        <TrashIcon className="w-4 h-4" />
-                                    </button>
-                                </td>
-                            </tr>
-                        );
-                    })}
                 </tbody>
-                <ToastContainer />
             </table>
+            <ToastContainer />
+            <ConfirmationModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setAccepted={setAccepted}
+            />
         </div>
     );
 };

@@ -27,5 +27,4 @@ This website is made for smartphone stock and sell.
 -   dotenv to load environment files.
 -   formik to handle form data.
 -   react-responsive-carousel to use carousel
--   react-table to display table data
 -   swr to auto fetch data.

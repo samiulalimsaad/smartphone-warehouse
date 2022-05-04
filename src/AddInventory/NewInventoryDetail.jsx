@@ -2,10 +2,10 @@ import React from "react";
 
 const NewInventoryDetail = ({ inventory }) => {
     return (
-        <div className="relative w-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
-            <div className="flex">
+        <div className="w-full rounded-md shadow-md bg-slate-50 ring-1 ring-slate-300 drop-shadow-md text-slate-800">
+            <div className="flex justify-center w-full">
                 <div className="p-8 pb-14">
-                    <div className="flex items-center justify-center overflow-hidden">
+                    <div className="flex items-center justify-center w-full overflow-hidden">
                         <img
                             src={inventory?.images[0]}
                             alt=""
@@ -17,13 +17,16 @@ const NewInventoryDetail = ({ inventory }) => {
                             {inventory?.name}
                         </h3>
                         <p className="text-xl capitalize">
+                            supplier Name : {inventory?.supplierName}
+                        </p>
+                        <p className="text-xl capitalize">
+                            brand Name : {inventory?.brandName}
+                        </p>
+                        <p className="text-xl capitalize">
                             Price : ${inventory?.price}
                         </p>
                         <p className="text-xl capitalize">
                             Available : {inventory?.quantity}
-                        </p>
-                        <p className="text-xl capitalize">
-                            supplier Name : {inventory?.supplierName}
                         </p>
                     </div>
                     <ul className="capitalize text-md text-slate-600">

@@ -3,12 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import ConfirmationModal from "../ConfirmationModal";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
 import useTitle from "../utilities/useTitle";
 
 const MyInventory = () => {
     useTitle("My Inventories");
+    const [isOpen, setIsOpen] = useState(false);
+    const [accepted, setAccepted] = useState(false);
     const [myItems, setMyItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user] = useAuthState(auth);
@@ -45,7 +48,8 @@ const MyInventory = () => {
 
     const deleteItem = async (id) => {
         try {
-            if (confirm("Do you want to proceed?")) {
+            setIsOpen(true);
+            if (accepted) {
                 const { data } = await axios.delete(
                     `https://smartphone-warehouse-saad.herokuapp.com/inventories/${id}`
                 );
@@ -142,6 +146,11 @@ const MyInventory = () => {
                 ))}
             </div>
             <ToastContainer />
+            <ConfirmationModal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setAccepted={setAccepted}
+            />
         </div>
     );
 };

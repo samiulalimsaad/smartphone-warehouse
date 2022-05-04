@@ -34,6 +34,7 @@ const AddInventoryForm = ({ user, setNewInventory }) => {
         price: "",
         supplierName: user?.displayName,
         email: user?.email,
+        brandName: user?.email,
         description: "",
     };
 
@@ -155,6 +156,22 @@ const AddInventoryForm = ({ user, setNewInventory }) => {
                                 </div>
                             </div>
                             <div className="justify-between gap-4 space-y-4 sm:flex sm:space-y-0">
+                                <div className="w-full">
+                                    <label
+                                        htmlFor="brandName"
+                                        className="pb-2 ml-2 text-teal-900"
+                                    >
+                                        Brand Name
+                                    </label>
+                                    <Field
+                                        id="brandName"
+                                        name="brandName"
+                                        autoComplete="brandName"
+                                        required
+                                        className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg appearance-none rounded-b-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                                        placeholder="brandName"
+                                    />
+                                </div>
                                 <div className="w-full">
                                     <label
                                         htmlFor="price"
