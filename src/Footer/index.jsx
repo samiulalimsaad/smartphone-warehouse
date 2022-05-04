@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="gap-4 p-4 space-y-8 sm:space-y-0 sm:p-20 sm:items-center sm:flex sm:container justify-evenly text-slate-300">
             <div className="space-y-8 text-center sm:w-1/2">
                 <h2 className="text-2xl">About Us</h2>
-                <p className="flex justify-center text-justify sm:px-20">
+                <p className="flex justify-center text-center sm:px-20">
                     Get great deals every day at The Warehouse. Shop online and
                     browse through our massive range of products, with great
                     deals on Fashion, Homewares, Toys, and so much more. With

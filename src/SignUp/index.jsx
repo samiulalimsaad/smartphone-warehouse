@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
     useAuthState,
     useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase.init";
@@ -9,12 +10,13 @@ import useTitle from "../utilities/useTitle";
 
 const Signup = () => {
     useTitle("SignUp");
-    const [createUserWithEmailAndPassword, user, loading, error] =
+    const [createUserWithEmailAndPassword, user1, loading, error] =
         useCreateUserWithEmailAndPassword(auth, {
             sendEmailVerification: true,
         });
+    const [updateProfile, updating] = useUpdateProfile(auth);
 
-    const [user1] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,17 +29,18 @@ const Signup = () => {
     const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user1 || user) {
+        if (user?.emailVerified) {
             navigate(from, { replace: true });
         }
-    }, [user, user1]);
+    }, [user]);
 
     const createUser = () => {
         if (name && email && password) {
             createUserWithEmailAndPassword(email, password).then(() => {
                 setMessage(
-                    `check your mail ${email}. please don't forget to check spam`
+                    `check your mail ${email}. please don't forget to check spam. then back here and refresh the page`
                 );
+                updateProfile({ displayName: name });
             });
         }
     };
