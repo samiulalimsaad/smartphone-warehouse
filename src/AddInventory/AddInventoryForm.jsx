@@ -34,7 +34,7 @@ const AddInventoryForm = ({ user, setNewInventory }) => {
         price: "",
         supplierName: user?.displayName,
         email: user?.email,
-        brandName: user?.email,
+        brandName: "",
         description: "",
     };
 
