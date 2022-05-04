@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     useAuthState,
     useCreateUserWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase.init";
 import useTitle from "../utilities/useTitle";
 
@@ -21,7 +21,16 @@ const Signup = () => {
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
 
+    const location = useLocation();
     const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (user1 || user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, user1]);
 
     const createUser = () => {
         if (name && email && password) {

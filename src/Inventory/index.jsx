@@ -30,7 +30,7 @@ const Inventory = () => {
             <h2 className="my-4 text-6xl text-center text-teal-500">
                 Inventory Items
             </h2>
-            {user ? (
+            {user && data ? (
                 <div>
                     <div className="flex p-8 justify-evenly">
                         <div className="w-1/2 h-screen p-8 overflow-y-scroll">
