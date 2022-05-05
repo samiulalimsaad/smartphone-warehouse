@@ -1,4 +1,4 @@
-# warehouse-management-client-side-samiulalimsaad
+# smartphone-warehouse
 
 Github Link (Server) : <https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-samiulalimsaad>
 
