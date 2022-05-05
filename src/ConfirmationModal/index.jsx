@@ -26,7 +26,7 @@ const ConfirmationModal = ({ isOpen, setIsOpen, id }) => {
         <Dialog
             open={isOpen}
             onClose={() => setIsOpen(false)}
-            className={`absolute h-full w-full inset-0 backdrop-blur-sm text-slate-900 flex justify-center items-center `}
+            className={`absolute h-full w-full inset-0 backdrop-blur-sm text-slate-900 flex justify-center items-center z-[55]`}
         >
             <Dialog.Panel className="p-4 bg-white rounded-md shadow-md">
                 <Dialog.Title className="text-3xl font-semibold text-slate-700">

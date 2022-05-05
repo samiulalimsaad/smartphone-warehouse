@@ -1,17 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import ConfirmationModal from "../ConfirmationModal";
+import { ModalContext } from "../App";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
 import useTitle from "../utilities/useTitle";
 
 const MyInventory = () => {
     useTitle("My Inventories");
-    const [isOpen, setIsOpen] = useState(false);
-    const [id, setId] = useState("");
+    const { setIsOpen, setId } = useContext(ModalContext);
+
     const [myItems, setMyItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user] = useAuthState(auth);
@@ -129,13 +129,6 @@ const MyInventory = () => {
                         </div>
                     </div>
                 ))}
-            </div>
-            <div className="overflow-y-scroll">
-                <ConfirmationModal
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                    id={id}
-                />
             </div>
         </div>
     );
