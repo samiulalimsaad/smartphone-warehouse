@@ -28,7 +28,7 @@ const ManageInventory = () => {
     }, [page, limit]);
 
     return (
-        <section id="inventoryItems" className="container p-4 mx-auto sm:p-20">
+        <section id="inventoryItems" className="container mx-auto sm:p-20">
             <div className="items-center justify-between my-4 sm:flex sm:my-0">
                 <h2 className="my-4 text-6xl text-center text-teal-500">
                     Inventory Items List
@@ -54,7 +54,7 @@ const ManageInventory = () => {
                     </div>
                 )}
             </div>
-            <div className="flex mt-20">
+            <div className="flex justify-center mt-20">
                 {new Array(total).fill(1).map((v, i) => (
                     <button
                         key={i + 1}
@@ -79,6 +79,8 @@ const ManageInventory = () => {
                     <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
                 </select>
             </div>
         </section>

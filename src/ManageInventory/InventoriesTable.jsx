@@ -1,10 +1,10 @@
 import { PencilIcon } from "@heroicons/react/outline";
 import { TrashIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ConfirmationModal from "../ConfirmationModal";
+import { ModalContext } from "../App";
 import Loading from "../Loading";
 
 const columns = [
@@ -18,9 +18,9 @@ const columns = [
 ];
 
 const InventoriesTable = ({ inventory, setInventory }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [id, setId] = useState("");
     const navigate = useNavigate();
+
+    const { setIsOpen, setId } = useContext(ModalContext);
 
     if (!inventory) {
         return (
@@ -85,7 +85,7 @@ const InventoriesTable = ({ inventory, setInventory }) => {
                             <td className="py-6 border border-teal-500">
                                 {item.supplierName}
                             </td>
-                            <td className="space-x-2">
+                            <td className="space-y-2 space-x02 sm:space-x-2 sm:space-y-0">
                                 <button
                                     className="p-2 rounded-full text-sky-900 bg-sky-300 hover:bg-sky-400 hover:text-slate-50"
                                     title="Edit"
@@ -107,13 +107,6 @@ const InventoriesTable = ({ inventory, setInventory }) => {
                     ))}
                 </tbody>
             </table>
-            <div className="overflow-y-scroll">
-                <ConfirmationModal
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                    id={id}
-                />
-            </div>
         </div>
     );
 };
