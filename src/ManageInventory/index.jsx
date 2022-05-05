@@ -71,7 +71,10 @@ const ManageInventory = () => {
                 <select
                     className="px-4 py-3 border border-teal-600"
                     name="page"
-                    onClick={(e) => setLimit(+e.target.value)}
+                    onClick={(e) => {
+                        setLimit(+e.target.value);
+                        setPage(1);
+                    }}
                 >
                     <option value="5">5</option>
                     <option value="10">10</option>
