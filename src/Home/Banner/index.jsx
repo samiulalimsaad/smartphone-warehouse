@@ -6,7 +6,7 @@ import { fetcher } from "../../utilities/featcher";
 
 const Banner = () => {
     const { data } = useSWR(
-        `https://smartphone-warehouse-saad.herokuapp.com/inventories`,
+        `https://smartphone-warehouse-saad.herokuapp.com/inventories?limit=6`,
         fetcher
     );
     return (
@@ -28,7 +28,7 @@ const Banner = () => {
             autoFocus
             className="object-cover object-center "
         >
-            {data?.inventory?.slice(0, 6).map((item) => (
+            {data?.inventory?.map((item) => (
                 <div key={item.name}>
                     <img
                         src={item.images[0]}

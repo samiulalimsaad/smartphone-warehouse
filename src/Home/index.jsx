@@ -11,7 +11,7 @@ const Home = () => {
     useTitle("Home");
 
     const { data, error } = useSWR(
-        "https://smartphone-warehouse-saad.herokuapp.com/inventories",
+        "https://smartphone-warehouse-saad.herokuapp.com/inventories?limit=5",
         fetcher
     );
 
@@ -19,7 +19,7 @@ const Home = () => {
         <div>
             <Banner />
             {data ? (
-                <InventoryItems inventory={data?.inventory.slice(0, 5)} />
+                <InventoryItems inventory={data?.inventory} />
             ) : (
                 <div className="h-96">
                     <Loading />
