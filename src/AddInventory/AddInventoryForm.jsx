@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const AddInventoryForm = ({ user, setNewInventory }) => {
     const addInventory = async (values) => {
@@ -262,7 +262,6 @@ const AddInventoryForm = ({ user, setNewInventory }) => {
                     </Form>
                 )}
             </Formik>
-            <ToastContainer />
         </div>
     );
 };

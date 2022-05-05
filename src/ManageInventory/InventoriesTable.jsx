@@ -1,15 +1,26 @@
+import { PencilIcon } from "@heroicons/react/outline";
 import { TrashIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmationModal from "../ConfirmationModal";
 import Loading from "../Loading";
 
-const columns = ["Name", "brand", "Quantity", "Price", "Supplier Name"];
+const columns = [
+    "No",
+    "Name",
+    "image",
+    "brand",
+    "Quantity",
+    "Price",
+    "Supplier Name",
+];
 
 const InventoriesTable = ({ inventory, setInventory }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [id, setId] = useState("");
+    const navigate = useNavigate();
 
     if (!inventory) {
         return (
@@ -44,13 +55,23 @@ const InventoriesTable = ({ inventory, setInventory }) => {
                     </tr>
                 </thead>
                 <tbody className="text-center">
-                    {inventory?.map((item) => (
+                    {inventory?.map((item, i) => (
                         <tr
                             key={item._id}
                             className="border border-t-0 border-teal-500 "
                         >
                             <td className="py-6 border border-teal-500">
+                                {i + 1}
+                            </td>
+                            <td className="py-6 border border-teal-500">
                                 {item.name}
+                            </td>
+                            <td className="flex items-center justify-center py-6">
+                                <img
+                                    src={item.images[0]}
+                                    alt=""
+                                    className="object-cover w-10"
+                                />
                             </td>
                             <td className="py-6 border border-teal-500">
                                 {item.brandName}
@@ -64,10 +85,20 @@ const InventoriesTable = ({ inventory, setInventory }) => {
                             <td className="py-6 border border-teal-500">
                                 {item.supplierName}
                             </td>
-                            <td>
+                            <td className="space-x-2">
+                                <button
+                                    className="p-2 rounded-full text-sky-900 bg-sky-300 hover:bg-sky-400 hover:text-slate-50"
+                                    title="Edit"
+                                    onClick={() =>
+                                        navigate(`/inventory/${item._id}`)
+                                    }
+                                >
+                                    <PencilIcon className="w-4 h-4" />
+                                </button>
                                 <button
                                     className="p-2 text-red-600 bg-red-300 rounded-full hover:bg-red-400 hover:text-slate-50"
                                     onClick={() => deleteItem(item)}
+                                    title="Delete"
                                 >
                                     <TrashIcon className="w-4 h-4" />
                                 </button>
@@ -76,7 +107,6 @@ const InventoriesTable = ({ inventory, setInventory }) => {
                     ))}
                 </tbody>
             </table>
-            <ToastContainer />
             <div className="overflow-y-scroll">
                 <ConfirmationModal
                     isOpen={isOpen}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import ConfirmationModal from "../ConfirmationModal";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
@@ -130,7 +130,6 @@ const MyInventory = () => {
                     </div>
                 ))}
             </div>
-            <ToastContainer />
             <div className="overflow-y-scroll">
                 <ConfirmationModal
                     isOpen={isOpen}

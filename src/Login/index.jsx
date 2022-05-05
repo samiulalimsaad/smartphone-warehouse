@@ -8,7 +8,7 @@ import {
     useUpdatePassword,
 } from "react-firebase-hooks/auth";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../Firebase.init";
 import useTitle from "../utilities/useTitle";
@@ -55,6 +55,8 @@ const Login = () => {
                         signOut(auth);
                     }
                 });
+        } else {
+            localStorage.removeItem("accessToken");
         }
     }, [user, user1, userGoogle]);
 
@@ -152,7 +154,6 @@ const Login = () => {
                     </div>
                 </form>
             </div>
-            <ToastContainer />
         </div>
     );
 };

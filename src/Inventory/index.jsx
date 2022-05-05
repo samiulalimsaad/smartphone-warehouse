@@ -2,7 +2,6 @@ import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useParams } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import useSWR from "swr";
 import { auth } from "../Firebase.init";
 import Loading from "../Loading";
@@ -59,7 +58,6 @@ const Inventory = () => {
                     <Loading />
                 </div>
             )}
-            <ToastContainer />
         </section>
     );
 };
