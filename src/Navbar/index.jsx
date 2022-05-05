@@ -52,7 +52,13 @@ const Navbar = () => {
                                 My Inventory
                             </CustomLink>
                             <CustomLink to="/dashboard">Dashboard</CustomLink>
-                            <button onClick={() => signOut(auth)} to="/logout">
+                            <button
+                                onClick={() => {
+                                    signOut(auth);
+                                    localStorage.removeItem("accessToken");
+                                }}
+                                to="/logout"
+                            >
                                 Logout
                             </button>
                         </>

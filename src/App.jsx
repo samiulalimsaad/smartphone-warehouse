@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import NotFound from "./404";
 import AddInventory from "./AddInventory";
 import Blogs from "./Blogs";
@@ -74,6 +75,9 @@ function App() {
             <footer className="bg-slate-900">
                 <Footer />
             </footer>
+            <>
+                <ToastContainer />
+            </>
         </>
     );
 }
