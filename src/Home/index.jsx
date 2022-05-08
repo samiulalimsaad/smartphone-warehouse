@@ -19,13 +19,15 @@ const Home = () => {
         <div>
             <Banner />
             {data ? (
-                <InventoryItems inventory={data?.inventory} />
+                <>
+                    <InventoryItems inventory={data?.inventory} />
+                    <ExtraSection />
+                </>
             ) : (
                 <div className="h-96">
                     <Loading />
                 </div>
             )}
-            <ExtraSection />
         </div>
     );
 };

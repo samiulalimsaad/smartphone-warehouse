@@ -1,4 +1,5 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -30,14 +31,23 @@ const MyInventory = () => {
                         },
                     }
                 )
-                .then(({ data }) => {
-                    if (data.success) {
-                        setMyItems(data.inventory);
+                .then((res) => {
+                    if (res?.data.success) {
+                        setMyItems(res.data.inventory);
                     } else {
                         navigate("/login");
+                        signOut(auth);
                     }
                 })
-                .catch((err) => {})
+                .catch((err) => {
+                    if (
+                        err.response.status === 403 ||
+                        err.response.status === 401
+                    ) {
+                        navigate("/login");
+                        signOut(auth);
+                    }
+                })
                 .finally(() => {
                     setLoading(false);
                 });
