@@ -39,7 +39,7 @@ const Navbar = () => {
                     onClick={() => setShow(false)}
                 >
                     <CustomLink to="/">Home</CustomLink>
-                    <CustomLink to="/blogs">Blogs</CustomLink>
+                    {/* <CustomLink to="/blogs">Blogs</CustomLink> */}
                     {user && user?.emailVerified ? (
                         <>
                             <CustomLink to="/manage-inventories">
